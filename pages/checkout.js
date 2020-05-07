@@ -26,7 +26,10 @@ export const getServerSideProps = async ctx => {
 
   paymentIntent = await stripe.paymentIntents.create({
     amount: 1000,
-    currency: "gbp"
+    currency: "usd",
+    metadata: {
+      order_id: ""
+    }
   });
 
   setCookie(ctx, "paymentIntentId", paymentIntent.id);

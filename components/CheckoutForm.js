@@ -10,14 +10,17 @@ const CheckoutForm = ({ paymentIntent }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-
+    const billing_details = {
+      name: document.getElementById("fullname").value
+    };
     try {
       const {
         error,
         paymentIntent: { status }
       } = await stripe.confirmCardPayment(paymentIntent.client_secret, {
         payment_method: {
-          card: elements.getElement(CardElement)
+          card: elements.getElement(CardElement),
+          billing_details
         }
       });
 
@@ -36,6 +39,16 @@ const CheckoutForm = ({ paymentIntent }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <p>
+        <label>
+          Receiver Name&nbsp; &nbsp;
+          <input type="text" name="name" className="input" id="receivername" />
+        </label>
+      </p>
+      <label>
+        Name on Card &nbsp; &nbsp;
+        <input type="text" name="name" className="input" id="fullname" />
+      </label>
       <CardElement />
 
       <button type="submit" disabled={!stripe}>
