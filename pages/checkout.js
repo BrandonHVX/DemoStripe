@@ -5,10 +5,10 @@ import { Elements } from "@stripe/react-stripe-js";
 
 import CheckoutForm from "../components/CheckoutForm";
 
-const stripePromise = loadStripe("STRIPE_PUBLISHABLE_KEY");
+const stripePromise = loadStripe("pk_test_qticix44cW8mGN9kWbbbf0zn0053004gZf");
 
 export const getServerSideProps = async ctx => {
-  const stripe = new Stripe("STRIPE_SECRET_KEY_HERE");
+  const stripe = new Stripe("sk_test_sFcp1zGZU2rJLjwy9vCA4p3w00fIqoUZFR");
 
   let paymentIntent;
 
